@@ -63,15 +63,17 @@ public class student {
                         sc.nextLine();
                         System.out.println("Enter New Marks:");
                         double newMarks = sc.nextDouble();
-
+                        //Create Prepared Statement
                         PreparedStatement st1 = conn.prepareStatement(
                                 "UPDATE Student SET marks=? WHERE id=?");
 
                         st1.setDouble(1, newMarks);
                         st1.setInt(2, searchid);
-
+						
+                        //Execute Query/Update
                         int res1 = st1.executeUpdate();
-
+						
+                        //Process Result
                         if (res1 > 0) {
                             System.out.println("Record updated successfully for ID: " + searchid);
                         } 
@@ -130,6 +132,7 @@ public class student {
             } 
 
         } 
+		//Exception Handling
 		catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -137,3 +140,4 @@ public class student {
 	}
 
 }
+
