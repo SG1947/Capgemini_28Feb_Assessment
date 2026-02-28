@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-// Polymorphism: List can store both VegItem and NonVegItem
+// Polymorphism: List can store both VegItem and NonVegItem items
 private List<FoodItem>foodlist;
 public Order() {
 	foodlist=new ArrayList<>();
@@ -12,6 +12,7 @@ public Order() {
 public void addFoodItem(FoodItem food) {
 	foodlist.add(food);
 }
+//Method to calculate total bill
 public double calculateTotalBill() {
 	double result=0;
 	for(FoodItem item:foodlist) {
@@ -20,3 +21,4 @@ public double calculateTotalBill() {
 	return result;
 }
 }
+
