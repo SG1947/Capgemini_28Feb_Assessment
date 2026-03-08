@@ -1,64 +1,35 @@
-## 1. Online Food Ordering System
+# Java Learning Repository
 
-### Description
+This repository contains my practice programs and assignments from learning **Java, Data Structures, and Database Connectivity**.
 
-This project is developed using core Java and demonstrates OOP concepts like abstraction, inheritance, polymorphism and encapsulation.
+## 📂 Repository Structure
 
-### Classes Used
+* **Core Java**
 
-**FoodItem (Abstract Class)**
+  * CORE JAVA 1
+  * CORE JAVA 2
+  * CORE JAVA 3 / Week3
 
-* Attributes: id, name, price
-* Private variables with getters and setters
-* Abstract method: calculateDiscount()
+* **Advanced Java**
 
-**VegItem (Subclass of FoodItem)**
+  * ADVANCED JAVA
+  * Java to Database Connectivity
+  * HIBERNATE
+  * UNIT TESTING
 
-* Implements calculateDiscount()
-* Gives 10% discount
+* **Data Structures**
 
-**NonVegItem (Subclass of FoodItem)**
+  * DATA STRUCTURES & ALGORITHMS 1
+  * DATA STRUCTURES & ALGORITHMS 2
 
-* Implements calculateDiscount()
-* Gives 5% discount
+* **Database**
 
-**Order Class**
+  * SQL
 
-* Contains a List of FoodItem
-* Method: calculateTotalBill()
-* Stores both VegItem and NonVegItem in same list (polymorphism)
-
-### Concepts Used
-
-* Abstraction → FoodItem abstract class
-* Inheritance → VegItem and NonVegItem extend FoodItem
-* Polymorphism → List<FoodItem>
-* Encapsulation → Private variables with getters and setters
-
-## 2. Student Management System (JDBC)
-
-### Description
-
-This is a console-based Java application that performs CRUD operations on a Student table using JDBC.
-
-Only PreparedStatement is used for all database operations. Statement is not used anywhere.
-
-### Database Table
-
-Student(
-id INT PRIMARY KEY,
-name VARCHAR(50),
-marks DOUBLE
-)
-
-### Functionalities
-
-1. Insert student
-2. Update student marks
-3. Delete student
-4. Fetch all students
-
-The program is menu driven and runs in a loop until the user exits.
+* **Assignments**
+ 
+  * Food Order (28th Feb)
+  * JDBC Student (28th Feb)
+  * 7th_March_Assessment
 
 
-These two projects helped me understand OOP concepts and how to connect Java with a database using JDBC and PreparedStatement.
