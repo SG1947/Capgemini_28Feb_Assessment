@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- bean definitions here -->
+
+	<bean name="student" class="com.capg.Spring1.Student">
+
+		<constructor-arg value="200"></constructor-arg>
+		<constructor-arg value="Priya"></constructor-arg>
+		<constructor-arg value="Female"></constructor-arg>
+		<constructor-arg value="95"></constructor-arg>
+	</bean>
+	<bean name="employee" class="com.capg.Spring1.Employee"
+		autowire="byName">
+
+		<property name="id" value="100"></property>
+	    <property name="name" value="Neha"></property>
+		<property name="email" value="riya@gmail.com"></property> 
+		<property name="salary" value="50000"></property>
+
+	</bean>
+
+	
+</beans>
+
