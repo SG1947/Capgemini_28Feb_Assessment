@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      align-items: flex-start;
+      padding: 2rem;
+    }
+ 
+    .dashboard-wrapper {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+      animation: cardRise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+      position: relative;
+      z-index: 1;
+    }
+ 
+    /* ── Navbar ── */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--parchment);
+      border: 1.5px solid var(--sand);
+      border-radius: 14px;
+      padding: 0.9rem 1.5rem;
+      box-shadow: 0 4px 16px var(--shadow);
+      margin-bottom: 1.75rem;
+    }
+ 
+    .navbar-brand {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--moss);
+    }
+ 
+    .navbar-brand span {
+      color: var(--soil);
+    }
+ 
+    .logout-btn {
+      background: none;
+      border: 1.5px solid var(--sand);
+      border-radius: 8px;
+      padding: 0.4rem 1rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--label);       /* ✅ visible brown */
+      cursor: pointer;
+      letter-spacing: 0.4px;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+ 
+    .logout-btn:hover {
+      background: var(--rose-light);
+      border-color: var(--rose-hip);
+      color: var(--rose-hip);
+    }
+ 
+    /* ── Welcome Card ── */
+    .welcome-card {
+      background: var(--parchment);
+      border: 1.5px solid var(--sand);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 20px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.6);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+ 
+    .welcome-card::after {
+      content: '🌿';
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 5rem;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+ 
+    .welcome-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 8%; right: 8%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--moss), var(--fern), transparent);
+      border-radius: 0 0 4px 4px;
+    }
+ 
+    .welcome-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--moss);        /* ✅ deep moss — clearly visible */
+      margin-bottom: 0.45rem;
+    }
+ 
+    .welcome-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--soil);
+      line-height: 1.2;
+    }
+ 
+    .welcome-heading .username {
+      color: var(--moss);
+    }
+ 
+    .welcome-sub {
+      margin-top: 0.65rem;
+      color: var(--label);       /* ✅ readable dark brown */
+      font-size: 0.92rem;
+      font-weight: 400;
+    }
+ 
+    /* ── Info Cards ── */
+    .cards-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+ 
+    .info-card {
+      background: var(--parchment);
+      border: 1.5px solid var(--sand);
+      border-radius: 14px;
+      padding: 1.25rem 1rem;
+      box-shadow: 0 2px 10px var(--shadow);
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+ 
+    .info-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px var(--shadow);
+    }
+ 
+    .info-card .icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+ 
+    .info-card .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--moss);        /* ✅ deep moss replaces faint sage */
+      font-weight: 700;
+    }
+ 
+    .info-card .value {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.1rem;
+      color: var(--soil);        /* ✅ near-black — max contrast */
+      font-weight: 700;
+      margin-top: 0.25rem;
+    }
+ 
+    /* ── Activity Section ── */
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.15rem;
+      color: var(--soil);
+      margin-bottom: 0.9rem;
+      font-weight: 700;
+    }
+ 
+    .activity-list {
+      background: var(--parchment);
+      border: 1.5px solid var(--sand);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px var(--shadow);
+    }
+ 
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.9rem 1.25rem;
+      border-bottom: 1px solid var(--sand);
+      transition: background 0.15s;
+    }
+ 
+    .activity-item:last-child {
+      border-bottom: none;
+    }
+ 
+    .activity-item:hover {
+      background: var(--moss-light);
+    }
+ 
+    .activity-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--moss);
+      flex-shrink: 0;
+    }
+ 
+    .activity-text {
+      font-size: 0.9rem;
+      color: var(--text);        /* ✅ dark brown — clearly readable */
+      font-weight: 400;
+      flex: 1;
+    }
+ 
+    .activity-time {
+      font-size: 0.8rem;
+      color: var(--label);       /* ✅ medium brown — was too faint */
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-wrapper">
+ 
+    <nav class="navbar">
+      <div class="navbar-brand">🌱 <span>Spring</span>App</div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </nav>
+ 
+    <div class="welcome-card">
+      <div class="welcome-label">Dashboard</div>
+      <div class="welcome-heading">
+        Hi, <span class="username" id="usernameDisplay">there</span> 👋
+      </div>
+      <p class="welcome-sub">Welcome back! Here's a quick look at your space.</p>
+    </div>
+ 
+    <div class="cards-row">
+      <div class="info-card">
+        <div class="icon">🌿</div>
+        <div class="label">Status</div>
+        <div class="value">Active</div>
+      </div>
+      <div class="info-card">
+        <div class="icon">📅</div>
+        <div class="label">Joined</div>
+        <div class="value" id="joinedDate">—</div>
+      </div>
+      <div class="info-card">
+        <div class="icon">🔒</div>
+        <div class="label">Session</div>
+        <div class="value">Secure</div>
+      </div>
+    </div>
+ 
+    <div class="section-title">Recent Activity</div>
+    <div class="activity-list">
+      <div class="activity-item">
+        <div class="activity-dot"></div>
+        <div class="activity-text">Logged in successfully</div>
+        <div class="activity-time">Just now</div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-dot" style="background: var(--fern)"></div>
+        <div class="activity-text">Account registered</div>
+        <div class="activity-time" id="regTime">—</div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-dot" style="background: var(--sand); border: 1.5px solid var(--label)"></div>
+        <div class="activity-text">Profile created</div>
+        <div class="activity-time">Earlier</div>
+      </div>
+    </div>
+ 
+  </div>
+ 
+  <script>
+    const params   = new URLSearchParams(window.location.search);
+    const username = params.get("user") || "there";
+    document.getElementById("usernameDisplay").textContent = username;
+ 
+    const today = new Date();
+    const opts  = { day: "numeric", month: "short", year: "numeric" };
+    document.getElementById("joinedDate").textContent = today.toLocaleDateString("en-IN", opts);
+    document.getElementById("regTime").textContent    = today.toLocaleDateString("en-IN", opts);
+ 
+    function logout() {
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
+ 

@@ -1,0 +1,286 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lato:wght@300;400;600&display=swap');
+
+:root {
+  --soil:        #2a1f0e;       
+  --text:        #3d2e1a;       
+  --label:       #5a3e28;       
+  --moss:        #2d6a42;       
+  --moss-dark:   #1e4f30;       
+  --moss-light:  #c8e6d0;       
+  --fern:        #4a8c60;       
+  --sage:        #4a7057;       
+  --cream:       #f2ece0;       
+  --parchment:   #e8dfc8;       
+  --sand:        #b8a882;       
+  --dew:         #d4edda;      
+  --success-text:#1a4d2e;      
+  --rose-hip:    #a83220;       
+  --rose-light:  #f7dcd8;       
+  --shadow:      rgba(42, 31, 14, 0.14);
+}
+ 
+/* ─── Reset & Base ─────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ 
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(ellipse at 15% 20%, rgba(45,106,66,0.09) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 75%, rgba(74,140,96,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 50%, rgba(184,168,130,0.12) 0%, transparent 70%);
+  font-family: 'Lato', sans-serif;
+  color: var(--text);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+ 
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+}
+body::before {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(45,106,66,0.15), transparent 70%);
+  top: -120px;
+  left: -120px;
+}
+body::after {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(74,140,96,0.13), transparent 70%);
+  bottom: -80px;
+  right: -80px;
+}
+ 
+/* ─── Card ──────────────────────────────────────────── */
+.card {
+  background: var(--parchment);
+  border: 1.5px solid var(--sand);
+  border-radius: 20px;
+  padding: 2.75rem 2.25rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow:
+    0 4px 6px var(--shadow),
+    0 12px 32px var(--shadow),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  position: relative;
+  z-index: 1;
+  animation: cardRise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+ 
+@keyframes cardRise {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+ 
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--moss), var(--fern), transparent);
+  border-radius: 0 0 4px 4px;
+}
+ 
+.card-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+ 
+.card-header h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--soil);
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+ 
+.card-header p {
+  margin-top: 0.45rem;
+  color: var(--label);           /* ✅ was --bark (too faint), now clearly readable */
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+ 
+/* ─── Form Groups ───────────────────────────────────── */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+ 
+.form-group label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 700;              /* ✅ bolder */
+  color: var(--soil);            /* ✅ darkest brown — max contrast */
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+ 
+.form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--moss-light);
+  border: 1.5px solid var(--sand);
+  border-radius: 10px;
+  color: var(--soil);            /* ✅ dark text on light input */
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+}
+ 
+.form-group input::placeholder {
+  color: var(--sage);            /* ✅ deeper sage — was too faint */
+  font-weight: 400;
+}
+ 
+.form-group input:focus {
+  border-color: var(--moss);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(45, 106, 66, 0.18);
+}
+ 
+/* ─── Password Toggle ───────────────────────────────── */
+.password-wrapper {
+  position: relative;
+}
+ 
+.password-wrapper input {
+  padding-right: 2.8rem;
+}
+ 
+.toggle-password {
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1rem;
+  opacity: 0.55;                 /* ✅ more visible */
+  transition: opacity 0.2s;
+  user-select: none;
+}
+ 
+.toggle-password:hover {
+  opacity: 1;
+}
+ 
+/* ─── Button ────────────────────────────────────────── */
+.btn {
+  width: 100%;
+  padding: 0.875rem;
+  margin-top: 0.75rem;
+  background: linear-gradient(135deg, var(--moss), var(--moss-dark));
+  color: #f5f0e8;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 14px rgba(45, 106, 66, 0.38);
+}
+ 
+.btn:hover:not(:disabled) {
+  opacity: 0.92;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(45, 106, 66, 0.45);
+}
+ 
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+ 
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+ 
+/* ─── Switch Link ───────────────────────────────────── */
+.switch-link {
+  text-align: center;
+  margin-top: 1.6rem;
+  font-size: 0.875rem;
+  color: var(--label);           /* ✅ readable brown */
+  font-weight: 400;
+}
+ 
+.switch-link a {
+  color: var(--moss);
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color 0.2s;
+}
+ 
+.switch-link a:hover {
+  border-bottom-color: var(--moss);
+}
+ 
+/* ─── Message Banner ────────────────────────────────── */
+.message {
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;              /* ✅ bolder so it's clearly readable */
+  margin-bottom: 1.25rem;
+  text-align: center;
+  border-left: 4px solid transparent;
+  animation: fadeIn 0.3s ease;
+}
+ 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+ 
+.message.hidden { display: none; }
+ 
+.message.success {
+  background: var(--dew);
+  border-left-color: var(--moss);
+  color: var(--success-text);    /* ✅ dark green text on light green bg */
+}
+ 
+.message.error {
+  background: var(--rose-light);
+  border-left-color: var(--rose-hip);
+  color: var(--rose-hip);        /* ✅ deep terracotta — clearly visible */
+}
+ 
+/* ─── Loading Spinner ───────────────────────────────── */
+.spinner {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(245, 240, 232, 0.45);
+  border-top-color: #f5f0e8;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  vertical-align: middle;
+  margin-right: 7px;
+}
+ 
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
